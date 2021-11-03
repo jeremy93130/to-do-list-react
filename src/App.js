@@ -14,6 +14,8 @@ class App extends React.Component {
     }
 
     this.addTask = this.addTask.bind(this)
+    this.deleteTask = this.deleteTask.bind(this)
+    this.modifyTask = this.modifyTask.bind(this)
   }
 
   addTask(str) {
@@ -24,9 +26,12 @@ class App extends React.Component {
     this.setState({ tasks: [...this.state.tasks, task] })
   }
 
-  deleteTask(task) {
-    this.state.tasks.splice(this.state.task.target.id, 1)
+  deleteTask(e) {
+    this.state.tasks.splice(e.target.id, 1)
     this.setState({ tasks: this.state.tasks })
+  }
+
+  modifyTask() {
   }
 
 
@@ -39,8 +44,9 @@ class App extends React.Component {
 
           addTask={this.addTask}
         />
-        {this.state.tasks.map((task, i) =>
-          <List task={task} removeTask={this.deleteTask} index={i} />)}
+        <h1>List</h1>
+        {this.state.tasks.map((task, i) => (
+          <List task={task} removeTask={this.deleteTask} modifyTask={this.modifyTask} index={i} />))}
 
       </>
 
